@@ -1,27 +1,27 @@
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
 import { mockDataImportStoryList } from '../../data/mockData';
-import EditIcon from '@mui/icons-material/Edit';
 import Header from '../../components/Header';
 
-const ImportHistoryList = () => {
+const ImportStoryList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: 'id', headerName: 'ID' },
-    { field: 'supplier_id', headerName: 'Id nhà cung cấp', flex: 0.5 },
-    { field: 'supplier', headerName: 'Nhà cung cấp ', flex: 1 },
-    { field: 'product_id', headerName: 'Id sản phẩm', flex: 0.5 },
-    { field: 'product', headerName: 'Sản phẩm ', flex: 1 },
+    { field: 'supplier_id', headerName: 'Supplier Id' },
+    { field: 'supplier', headerName: 'Supplier ', flex: 1 },
+    { field: 'product_id', headerName: 'Product Id' },
+    { field: 'product', headerName: 'Product ', flex: 1 },
+    { field: 'subproduct_id', headerName: 'Subproduct Id' },
     {
       field: 'quantity',
-      headerName: 'Số lượng',
+      headerName: 'Quantity',
       flex: 1,
     },
     {
       field: 'total_cost',
-      headerName: 'Tổng số tiền',
+      headerName: 'Total Cost',
       flex: 1,
       renderCell: (params: any) => (
         <Typography color={colors.greenAccent[500]}>
@@ -31,32 +31,29 @@ const ImportHistoryList = () => {
     },
     {
       field: 'status',
-      headerName: 'Trạng thái',
+      headerName: 'Status',
       flex: 1,
     },
     {
-      field: 'createdAt',
-      headerName: 'Thời gian nhập ',
+      field: 'note',
+      headerName: 'Note',
       flex: 1,
     },
     {
-      field: 'eidt',
-      headerName: '',
-      flex: 0.3,
-      renderCell: () => {
-        return (
-          <Button
-            variant='text'
-            startIcon={<EditIcon style={{ color: 'white' }} />}
-          ></Button>
-        );
-      },
+      field: 'created_by',
+      headerName: 'Created By',
+      flex: 1,
+    },
+    {
+      field: 'update_by',
+      headerName: 'Updated By',
+      flex: 1,
     },
   ];
 
   return (
     <Box m='20px'>
-      <Header title='Danh sách' subtitle='Danh sách lịch sử nhập hàng' />
+      <Header title='List' subtitle='Import History List' />
       <Box
         m='40px 0 0 0'
         height='75vh'
@@ -96,4 +93,4 @@ const ImportHistoryList = () => {
   );
 };
 
-export default ImportHistoryList;
+export default ImportStoryList;

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 //import Sidebar from './scenes/global/Sidebar';
 import Dashboard from './scenes/dashboard';
 import Team from './scenes/team';
-import ImportHistoryList from './scenes/list/ImportHistoryList';
+import ImportStoryList from './scenes/list/ImportHistoryList';
 // import Contacts from './scenes/contacts';
 // import Bar from './scenes/bar';
 import ImportProductsForm from './scenes/form/ImportProductForm';
@@ -32,7 +32,7 @@ function App() {
               <Route path='/' element={<Dashboard />} />
               <Route path='/team' element={<Team />} />
               <Route path='/import/create' element={<ImportProductsForm />} />
-              <Route path='/import/history' element={<ImportHistoryList />} />
+              <Route path='/import/history' element={<ImportStoryList />} />
               {/* <Route path="/contacts" element={<Contacts />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
