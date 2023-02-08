@@ -55,7 +55,7 @@ const SupplierList = () => {
           <Button
             variant="outlined"
             onClick={() => {
-              navigate(`/$supplier/update/${param.row?.id}`, {
+              navigate(`/supplier/update/${param.row?.id}`, {
                 state: param.row,
               });
             }}
@@ -88,7 +88,7 @@ const SupplierList = () => {
           <Button
             variant="text"
             onClick={() => {
-              navigate(`/suppliers/${param.row?.id}`, { state: param.row });
+              navigate(`/supplier/${param.row?.id}`, { state: param.row });
             }}
             startIcon={<InfoIcon style={{ color: "white" }} />}
           ></Button>

@@ -1,14 +1,16 @@
 import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { useLocation, useParams } from "react-router-dom";
+import { ApiSupplierT } from "../../api";
 import Header from "../../components/Header";
 import { mockDataTeam, productData } from "../../data/mockData";
 import usePreserveQueryNavigate from "../../hooks/usePreserveQueryNavigate";
 import { tokens } from "../../theme";
 const SupplierDetailInfo = () => {
-  const navigate = usePreserveQueryNavigate();
-  const { supplier_id } = useParams();
-  const id = Number.parseInt(supplier_id || "");
+  const location = useLocation();
+  const param = location.state as ApiSupplierT;
+  console.log(param);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -48,16 +50,11 @@ const SupplierDetailInfo = () => {
         <Header title="Thông tin chi tiết nhà cung cấp" subtitle="" />
       </Box>
       <Box>
-        <p>ID:{productData.id}</p>
-        <p>Tên nhà cung cấp: {productData.name}</p>
-        <p>Số điện thoại: {productData.phone}</p>
-        <p>Email: {productData.email}</p>
-        <p>Địa chỉ:</p>
-        <ol>
-          {productData.address.map((add) => (
-            <li>{add}</li>
-          ))}
-        </ol>
+        <p>ID:{param.id}</p>
+        <p>Tên nhà cung cấp: {param.name}</p>
+        <p>Số điện thoại: {param.phone}</p>
+        <p>Email: {param.email}</p>
+        <p>Địa chỉ: {param.address}</p>
       </Box>
       <Box
         m="40px 0 0 0"

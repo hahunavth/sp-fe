@@ -22,7 +22,7 @@ const UpdateSupplier = () => {
   const { isLoading, isError, error, mutate } = useMutation({
     mutationFn: updateSupplier,
     onSuccess: () => {
-      queryClient.invalidateQueries(["supplier"]);
+      queryClient.invalidateQueries(["suppliers"]);
     },
   });
 
@@ -32,7 +32,6 @@ const UpdateSupplier = () => {
       mutate({
         id: param.id,
         s: {
-          ...param,
           ...values,
         },
       });

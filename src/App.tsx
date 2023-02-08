@@ -57,7 +57,7 @@ function App() {
                 {/* ======================================== Supplier ============================================== */}
                 <Route path="/suppliers" element={<SupplierList />} />
                 <Route path="/suppliers/create" element={<CreateSupplier />} />
-                <Route path="/suppliers/:id" element={<SupplierDetailInfo />} />
+                <Route path="/supplier/:id" element={<SupplierDetailInfo />} />
                 <Route
                   path="supplier/update/:id"
                   element={<UpdateSupplier />}
