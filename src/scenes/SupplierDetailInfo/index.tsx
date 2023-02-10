@@ -1,62 +1,45 @@
 import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useQueryClient } from "@tanstack/react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ApiSupplierT } from "../../api";
 import Header from "../../components/Header";
-import { mockDataTeam, productData } from "../../data/mockData";
 import usePreserveQueryNavigate from "../../hooks/usePreserveQueryNavigate";
 import { tokens } from "../../theme";
+
 const SupplierDetailInfo = () => {
+  const navigate = usePreserveQueryNavigate();
   const location = useLocation();
   const param = location.state as ApiSupplierT;
-  console.log(param);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "productID" },
-    { field: "subpdid", headerName: "SubID" },
-    {
-      field: "name",
-      headerName: "Tên sản phẩm",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "unit_price",
-      headerName: "Giá bán",
-      flex: 1,
-    },
-    {
-      field: "note",
-      headerName: "Ghi chú",
-      flex: 1,
-    },
-    {
-      field: "detail",
-      headerName: "",
+    {field:"product_id", headerName: "ID", flex: 1},
+    {field:"subproduct_id", headerName: "sub ID", flex: 1},
+    {field:"unit_price", headerName:"đơn giá", flex: 1},
+    {field:"see_unit_price_between_suppliers", headerName:"xem báo giá giữa các nhà cung cấp", 
       renderCell: () => {
         return (
-          <Button style={{ color: "yellow" }}>Báo giá của sản phẩm</Button>
-        );
-      },
-      flex: 1,
+          <Button>
+            Xem báo giá
+          </Button>
+        )
+      }
     },
-  ];
 
+  ]
   return (
-    <Box m="20px">
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Thông tin chi tiết nhà cung cấp" subtitle="" />
-      </Box>
-      <Box>
-        <p>ID:{param.id}</p>
-        <p>Tên nhà cung cấp: {param.name}</p>
-        <p>Số điện thoại: {param.phone}</p>
-        <p>Email: {param.email}</p>
-        <p>Địa chỉ: {param.address}</p>
-      </Box>
-      <Box
+    <Box mt="20px" width="650px" margin="100px auto">
+      <Header
+        title="Thông tin chi tiết của nhà cung cấp"
+        subtitle="Thông tin một nhà cung cấp"
+      />
+      {/*  */}
+        <p>Tên:{param.name}</p>
+        <p>Số điện thoại:{param.phone}</p>
+        <p>Email:{param.email}</p>
+        <p>address:{param.address}</p>
+      {/*  */}
+        <Box
         m="40px 0 0 0"
         height="75vh"
         sx={{
@@ -80,20 +63,16 @@ const SupplierDetailInfo = () => {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
           },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
         }}
       >
         <DataGrid
-          checkboxSelection
-          rows={mockDataTeam}
+          rows={ || []}
           columns={columns}
           experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>
     </Box>
+
   );
 };
-
 export default SupplierDetailInfo;
